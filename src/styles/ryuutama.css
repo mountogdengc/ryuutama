@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/* Storybook palette */
+@theme {
+  --color-ivory: #f7efe1;
+  --color-parchment: #e8d8c0;
+  --color-leather: #7c5e3c;
+  --color-leather-dark: #5a3e1e;
+  --color-rust: #b85c3a;
+  --color-rust-dark: #8a3a1e;
+  --color-teal: #3a6b5a;
+  --color-teal-dark: #2a4d40;
+  --color-critical: #2d6a1e;
+  --color-fumble: #8a1e1e;
+}
+
+/* Base sheet styles */
+.ryuutama.sheet {
+  font-family: "Signika", sans-serif;
+  background: var(--color-ivory);
+  color: var(--color-leather-dark);
+}
+
+.ryuutama.sheet header {
+  border-bottom: 2px solid var(--color-leather);
+}
+
+/* Rollable elements */
+.rollable {
+  cursor: pointer;
+}
+
+.rollable:hover {
+  color: var(--color-rust);
+  text-shadow: 0 0 4px rgba(184, 92, 58, 0.3);
+}
+
+/* Critical and fumble in chat */
+.dice-total.critical {
+  color: var(--color-critical);
+  font-weight: bold;
+}
+
+.dice-total.fumble {
+  color: var(--color-fumble);
+  font-weight: bold;
+}
+
+/* Tab styling */
+.tab-bar {
+  border-bottom: 2px solid var(--color-parchment);
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  color: var(--color-leather);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  font-family: Georgia, serif;
+}
+
+.tab-button:hover {
+  color: var(--color-rust);
+}
+
+.tab-button.active {
+  color: var(--color-rust);
+  border-bottom-color: var(--color-rust);
+}
+
+/* Input styling */
+.ryuutama input,
+.ryuutama select {
+  background: var(--color-ivory);
+  border: 1px solid var(--color-parchment);
+  color: var(--color-leather-dark);
+  padding: 2px 4px;
+}
+
+.ryuutama input:focus,
+.ryuutama select:focus {
+  border-color: var(--color-teal);
+  outline: none;
+}
