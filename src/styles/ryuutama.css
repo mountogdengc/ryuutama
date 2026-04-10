@@ -1,7 +1,8 @@
-@import "tailwindcss";
+/* Note: Do NOT import tailwindcss here — its CSS reset (preflight) breaks
+   Foundry's Font Awesome icons and base UI styles. We use plain CSS instead. */
 
 /* Storybook palette */
-@theme {
+:root {
   --color-ivory: #f7efe1;
   --color-parchment: #e8d8c0;
   --color-leather: #7c5e3c;
