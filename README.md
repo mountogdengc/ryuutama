@@ -1,18 +1,84 @@
 # Ryuutama
-Ryuutama System for Foundry VTT
 
-# Support and 0.8.X
-I am currently not able to update this project to be compatible with 0.8.X. I am unable to dedicate the time needed to review every breaking change and potentially rewrite this entire project. I know that maybe disappointing, but the reality is, projects like this are hobbies and support for them does not put food on the table for my family.
+A game system for [Ryuutama - Natural Fantasy RPG](http://kotohi.com/ryuutama/) on [Foundry VTT](https://foundryvtt.com/).
 
-# Some notes
-I am still in the process of finalizing some of the compendiums. Most things do not have icons/art for them, and use the default icon.
-Tutorials on how to use the system will come at a later time. They are in the process of being written and will be included in the wiki section when complete.
-If you would like to buy me a beer, or a pizza or something: https://www.paypal.me/reaver01
+## Requirements
 
-If you have ideas, or find bugs, please report them in the issues section!
+- Foundry VTT v14+
 
-# Icons
-Game icons come from https://game-icons.net/ and there use is covered by the Creative Commons 3.0 BY license.
+## Features
 
-# Important Info
-This is fan made content. Info about Ryuutama's licensing can be found here: http://kotohi.com/ryuutama/licensing/
+- Character and Monster actor sheets with full stat tracking
+- 11 item types: items, weapons, armor, shields, traveling gear, containers, animals, classes, features, enchantments, and spells
+- Journey check system with terrain/weather DCs, specialty bonuses, and concentration
+- Dice rolling with critical/fumble detection
+- Equipment slot validation (hands, chest, head, etc.)
+- Container system with drag-drop item management
+- Enchantment system with automatic price/durability calculation
+- Level 1-10 progression with stat increases, specialties, immunities, and weapon mastery
+- Customizable terrain (16 slots) and weather (16 slots) via world settings
+- GM sidebar controls for current terrain, weather, and time of day
+- 7 compendium packs (monsters, classes, features, items, spells, enchantments, containers)
+- Localization: English, Chinese, Japanese
+
+## Development
+
+### Tech Stack
+
+- [Svelte 5](https://svelte.dev/) - UI components
+- [Vite 6](https://vite.dev/) - Build tooling
+- [Tailwind CSS 4](https://tailwindcss.com/) - Styling
+
+### Setup
+
+```bash
+npm install
+```
+
+### Build
+
+```bash
+# Production build
+npm run build
+
+# Watch mode (rebuilds on file changes)
+npm run dev
+```
+
+The build outputs `dist/ryuutama.js` and `dist/ryuutama.css`, which are referenced by `system.json`.
+
+### Project Structure
+
+```
+src/
+  ryuutama.mjs              # Entry point (hooks, registrations)
+  config.mjs                # Game constants and defaults
+  data-models/
+    actor/                   # Character and Monster TypeDataModels
+    item/                    # 11 item type TypeDataModels
+  documents/
+    RyuutamaActor.mjs       # Custom Actor class (derived data, level calc)
+    RyuutamaItem.mjs         # Custom Item class (container size calc)
+  sheets/
+    actor/                   # AppV2 + Svelte actor sheets
+    item/                    # AppV2 + Svelte item sheets
+  combat/
+    rolls.mjs                # Roll logic (journey, combat, concentration)
+    chat-cards.mjs           # Chat message crit/fumble styling
+  helpers/
+    settings.mjs             # World settings registration
+    sidebar.mjs              # Chat sidebar terrain/weather controls
+    enchantment-calc.mjs     # Enchantment add/remove calculations
+    compendium-populator.mjs # Auto-populate packs from JSON
+  styles/
+    ryuutama.css             # Tailwind config + custom theme
+```
+
+## Credits
+
+- Game icons from [game-icons.net](https://game-icons.net/) (Creative Commons 3.0 BY)
+- This is fan-made content. Ryuutama licensing info: http://kotohi.com/ryuutama/licensing/
+
+## Contributing
+
+Issues and pull requests welcome at the project repository. Please run `npm run build` before submitting to ensure a clean build.
