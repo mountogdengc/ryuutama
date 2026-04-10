@@ -81,12 +81,12 @@
       ],
     });
 
-    const modifiers = [];
+    let concentrationBonus = 0;
     if (result === "mp" || result === "both") {
       const currMp = actor.system.mp.value;
       if (currMp > 0) {
-        await actor.update({ "system.mp.value": currMp - 1 });
-        modifiers.push(4);
+        await actor.update({ "system.mp.value": currMp - Math.ceil(currMp / 2) });
+        concentrationBonus += 1;
       } else {
         ui.notifications.warn("Not enough MP for concentration.");
       }
@@ -95,13 +95,15 @@
       const currFumble = actor.system.attributes.fumble;
       if (currFumble > 0) {
         await actor.update({ "system.attributes.fumble": currFumble - 1 });
-        modifiers.push(4);
+        concentrationBonus += 1;
       } else {
         ui.notifications.warn("No fumble points to spend.");
       }
     }
 
-    await rollCheck(formula, flavor, modifiers, rollData);
+    const modifiers = concentrationBonus > 0 ? [concentrationBonus] : [];
+    const concFlavor = concentrationBonus > 0 ? `${flavor}<br /><strong>CONCENTRATING</strong>` : flavor;
+    await rollCheck(formula, concFlavor, modifiers, rollData);
   }
 
   async function rollJourneyCheck(formula, label) {
