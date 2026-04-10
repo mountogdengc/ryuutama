@@ -173,42 +173,46 @@
           onchange={(e) => updateName(e.target.value)}
           placeholder="Character Name"
         />
-        <div class="flex gap-3 text-sm text-leather">
-          <span>
+        <div class="flex gap-2 text-sm text-leather flex-wrap">
+          <span class="flex items-center gap-1">
             <span class="font-semibold">Level</span>
-            {data.system.attributes.level}
+            <span class="text-leather-dark">{data.system.attributes.level}</span>
           </span>
-          <span>
+          <span class="flex items-center gap-1">
             <span class="font-semibold">XP</span>
             <input
-              class="w-16 text-center bg-transparent border-b border-parchment text-leather-dark"
+              class="text-center bg-transparent border-b border-parchment text-leather-dark"
+              style="width: 4rem;"
               type="number"
               value={data.system.attributes.experience}
               onchange={(e) => updateField("system.attributes.experience", e.target.value)}
             />
           </span>
-          <span>
+          <span class="flex items-center gap-1">
             <span class="font-semibold">Gold</span>
             <input
-              class="w-20 text-center bg-transparent border-b border-parchment text-leather-dark"
+              class="text-center bg-transparent border-b border-parchment text-leather-dark"
+              style="width: 4rem;"
               type="number"
               value={data.system.gold}
               onchange={(e) => updateField("system.gold", e.target.value)}
             />
           </span>
-          <span>
-            <span class="font-semibold">Condition</span>
+          <span class="flex items-center gap-1">
+            <span class="font-semibold">Cond</span>
             <input
-              class="w-10 text-center bg-transparent border-b border-parchment text-leather-dark"
+              class="text-center bg-transparent border-b border-parchment text-leather-dark"
+              style="width: 2.5rem;"
               type="number"
               value={data.system.attributes.condition.value}
               onchange={(e) => updateField("system.attributes.condition.value", e.target.value)}
             />
           </span>
-          <span>
+          <span class="flex items-center gap-1">
             <span class="font-semibold">Fumble</span>
             <input
-              class="w-10 text-center bg-transparent border-b border-parchment text-leather-dark"
+              class="text-center bg-transparent border-b border-parchment text-leather-dark"
+              style="width: 2.5rem;"
               type="number"
               value={data.system.attributes.fumble}
               onchange={(e) => updateField("system.attributes.fumble", e.target.value)}
@@ -219,10 +223,10 @@
     </div>
 
     <!-- Stats row -->
-    <div class="stats-row flex gap-2 mt-2 flex-wrap">
+    <div class="stats-row flex gap-1 mt-2 flex-wrap items-end">
       {#each [["str","STR"],["dex","DEX"],["int","INT"],["spi","SPI"]] as [key, label]}
         <button
-          class="stat-block flex flex-col items-center bg-ivory border border-leather rounded px-3 py-1 cursor-pointer hover:border-rust hover:text-rust rollable"
+          class="stat-block flex flex-col items-center bg-ivory border border-leather rounded px-2 py-1 cursor-pointer hover:border-rust hover:text-rust rollable"
           title="Click: 2d{data.system.attributes[key].value}, Alt+Click: 1d"
           onclick={(e) => rollStat(e, key)}
           type="button"
