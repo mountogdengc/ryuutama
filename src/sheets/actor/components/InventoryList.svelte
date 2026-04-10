@@ -79,6 +79,39 @@
       return;
     }
 
+    // Enhancement: confirm when dropping a container-with-items into another container
+    if (item.type === "container" && item.system.holding?.length > 0) {
+      const confirmed = await foundry.applications.api.DialogV2.confirm({
+        window: { title: game.i18n.localize("RYUU.containerMergeTitle") },
+        content: game.i18n.format("RYUU.containerMergeContent", {
+          target: container.name,
+          source: item.name,
+        }),
+        yes: { label: game.i18n.localize("RYUU.containerMergeConfirm") },
+        no: { label: game.i18n.localize("RYUU.containerMergeCancel") },
+      });
+      if (!confirmed) return;
+
+      // Merge: move all items from source container into target, then delete source
+      let availableSpace = container.system.canHold - (container.system.holdingSize || 0);
+      const holding = [...(container.system.holding || [])];
+      const updates = [];
+      for (const held of item.system.holding) {
+        const heldItem = actor.items.get(held.id);
+        if (heldItem && heldItem.system.size <= availableSpace) {
+          updates.push({ _id: heldItem.id, "system.container": container.id });
+          holding.push({ id: heldItem.id, name: heldItem.name });
+          availableSpace -= heldItem.system.size;
+        } else if (heldItem) {
+          updates.push({ _id: heldItem.id, "system.container": "" });
+        }
+      }
+      await container.update({ "system.holding": holding });
+      await actor.updateEmbeddedDocuments("Item", updates);
+      await actor.deleteEmbeddedDocuments("Item", [item.id]);
+      return;
+    }
+
     // Check container capacity
     const newSize = (container.system.holdingSize || 0) + item.system.size;
     if (newSize > container.system.canHold) {
