@@ -1,6 +1,10 @@
 {
     "RYUU.title": "Ryuutama",
 
+    "RYUU.SheetCharacter": "Ryuutama Character Sheet",
+    "RYUU.SheetMonster": "Ryuutama Monster Sheet",
+    "RYUU.SheetItem": "Ryuutama Item Sheet",
+
     "RYUU.name": "Name",
     "RYUU.description": "Description",
     "RYUU.attributes": "Attributes",
@@ -74,7 +78,7 @@
     "RYUU.travelgear": "Traveller's Gear",
     "RYUU.armorshield": "Armor/Shield",
     "RYUU.weapons": "Weapons",
-    "RYUU.capacity": "Carry",
+    "RYUU.capacity": "Capacity",
     "RYUU.gold": "Gold",
     "RYUU.gear": "Gear",
     "RYUU.containers": "Containers",
@@ -202,5 +206,10 @@
     "RYUU.accessory": "Accessory",
     "RYUU.staff": "Staff",
     "RYUU.holding": "Holding",
-    "RYUU.canHold": "Capacity"
+    "RYUU.canHold": "Capacity",
+
+    "RYUU.containerMergeTitle": "Merge Container",
+    "RYUU.containerMergeContent": "This container has items inside it. Merging will move all items into {target} and delete {source}. Continue?",
+    "RYUU.containerMergeConfirm": "Merge",
+    "RYUU.containerMergeCancel": "Cancel"
 }
