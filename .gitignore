@@ -2,12 +2,10 @@
 .idea/
 .vs/
 
-# SCSS Stuff
-.sass-cache/
-*.css.map
-*.sass.map
-*.scss.map
+# Build
+node_modules/
+dist/
+.superpowers/
+
+# Source maps
 *.map
-node_modules
-package.json
-package-lock.json
